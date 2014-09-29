@@ -1,0 +1,57 @@
+{"id": "THSPH_A", "resources": {
+    "SampleInterval": 5
+}, "state": "DRIVER_STATE_COMMAND", "capabilities": [
+    ["DRIVER_EVENT_SET", "DRIVER_EVENT_START_AUTOSAMPLE", "DRIVER_EVENT_GET", "DRIVER_EVENT_ACQUIRE_SAMPLE"],
+    ["SampleInterval"]
+], "metadata": {
+    "commands": {
+        "DRIVER_EVENT_GET": {
+            "return": {},
+            "display_name": "get",
+            "arguments": {},
+            "timeout": 10
+        },
+        "DRIVER_EVENT_ACQUIRE_SAMPLE": {
+            "return": {},
+            "display_name": "acquire sample",
+            "arguments": {},
+            "timeout": 10
+        },
+        "DRIVER_EVENT_STOP_AUTOSAMPLE": {
+            "return": {},
+            "display_name": "stop autosample",
+            "arguments": {},
+            "timeout": 10
+        },
+        "DRIVER_EVENT_SET": {
+            "return": {},
+            "display_name": "set",
+            "arguments": {},
+            "timeout": 10
+        },
+        "DRIVER_EVENT_START_AUTOSAMPLE": {
+            "return": {},
+            "display_name": "start autosample",
+            "arguments": {},
+            "timeout": 10
+        }
+    },
+    "driver": {
+        "vendor_sw_compatible": true
+    },
+    "parameters": {
+        "SampleInterval": {
+            "display_name": "Polled Interval",
+            "get_timeout": 10,
+            "direct_access": false,
+            "startup": true,
+            "visibility": "READ_WRITE",
+            "value": {
+                "default": 5,
+                "units": "s",
+                "type": "int"
+            },
+            "set_timeout": 10
+        }
+    }
+}}
