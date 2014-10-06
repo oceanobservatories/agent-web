@@ -1,23 +1,43 @@
 <div class="container theme-showcase" role="main">
     <div class="jumbotron">
-        <h1>{{agent.id}}</h1>
-        {{agent.state}}
+        <h1>{{agentid}}</h1>
+        {{agent.value.state}}
     </div>
+
+    <div ng-switch on="agent.value.state">
+        <div ng-switch-when="DRIVER_STATE_UNCONFIGURED">
+            <button type="button" class="btn btn btn-primary" ng-click="configure()">Configure</button>
+        </div>
+        <div ng-switch-when="DRIVER_STATE_DISCONNECTED">
+            <button type="button" class="btn btn btn-primary" ng-click="connect()">Connect</button>
+        </div>
+        <div ng-switch-when="DRIVER_STATE_UNKNOWN">
+            <button type="button" class="btn btn btn-primary" ng-click="discover()">Discover</button>
+        </div>
+    </div>
+
+    <!--<button type="button" class="btn btn btn-primary" ng-click="deleteAgent()">Delete</button>-->
 
     <h2>Available Capabilities</h2>
 
-    <div ng-repeat="cape in agent.capabilities[0]">
-        <div class="row">
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-lg btn-primary">{{cape}}</button>
-            </div>
-            <div class="col-sm-4">
-                <ul class="list-group">
-                    <li class="list-group-item">Display name: {{agent.metadata.commands[cape].display_name}}</li>
-                    <li class="list-group-item">Arguments: {{agent.metadata.commands[cape].arguments}}</li>
-                    <li class="list-group-item">Return: {{agent.metadata.commands[cape].return}}</li>
-                    <li class="list-group-item">Timeout: {{agent.metadata.commands[cape].timeout}}</li>
-                </ul>
+    <div ng-repeat="cape in agent.value.capabilities[0]">
+        <div ng-switch on="cape">
+            <div ng-switch-when="DRIVER_EVENT_GET"></div>
+            <div ng-switch-when="DRIVER_EVENT_SET"></div>
+            <div ng-switch-default>
+                <div class="row" >
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="execute(cape)">{{cape}}</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">Display name: {{agent.metadata.commands[cape].display_name}}</li>
+                            <li class="list-group-item">Arguments: {{agent.metadata.commands[cape].arguments}}</li>
+                            <li class="list-group-item">Return: {{agent.metadata.commands[cape].return}}</li>
+                            <li class="list-group-item">Timeout: {{agent.metadata.commands[cape].timeout}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -26,10 +46,10 @@
     <hr>
     <h2>Resources</h2>
 
-    <div ng-repeat="(resource, value) in agent.resources">
+    <div ng-repeat="(resource, value) in agent.value.parameters">
         <div class="row">
             <div class="col-sm-4">
-                <button type="button" class="btn btn-lg btn-primary">{{resource}} : {{value}}</button>
+                <button type="button" class="btn btn-primary btn-block">{{resource}} : {{value}}</button>
             </div>
             <div class="col-sm-4">
                 <ul class="list-group">

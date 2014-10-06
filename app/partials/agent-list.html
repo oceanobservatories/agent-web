@@ -10,4 +10,25 @@
                 </h2>
             </div>
     </div>
+
+    <div>
+        <form name="form" class="css-form" novalidate>
+            Id:
+            <input type="text" ng-model="newAgent.id" name="id" required /><br />
+            Module:
+            <input type="text" ng-model="newAgent.module" name="module" required/><br />
+            Class:
+            <input type="text" ng-model="newAgent.klass" name="klass" value="InstrumentDriver" /><br />
+            Host:
+            <input type="text" ng-model="newAgent.host" name="host" value="localhost" /><br />
+            Command Port:
+            <input type="number" ng-model="newAgent.commandPort" name="commandPort" /><br />
+            Event Port:
+            <input type="number" ng-model="newAgent.eventPort" name="eventPort" /><br />
+
+            <button ng-click="reset()" ng-disabled="isUnchanged(newAgent)">RESET</button>
+            <button ng-click="start(newAgent)"
+                    ng-disabled="form.$invalid || isUnchanged(newAgent)">START</button>
+        </form>
+    </div>
 </div>
