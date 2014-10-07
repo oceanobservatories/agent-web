@@ -31,10 +31,10 @@
                     </div>
                     <div class="col-sm-4">
                         <ul class="list-group">
-                            <li class="list-group-item">Display name: {{agent.metadata.commands[cape].display_name}}</li>
-                            <li class="list-group-item">Arguments: {{agent.metadata.commands[cape].arguments}}</li>
-                            <li class="list-group-item">Return: {{agent.metadata.commands[cape].return}}</li>
-                            <li class="list-group-item">Timeout: {{agent.metadata.commands[cape].timeout}}</li>
+                            <li class="list-group-item">Display name: {{agent.value.metadata.commands[cape].display_name}}</li>
+                            <li class="list-group-item">Arguments: {{agent.value.metadata.commands[cape].arguments}}</li>
+                            <li class="list-group-item">Return: {{agent.value.metadata.commands[cape].return}}</li>
+                            <li class="list-group-item">Timeout: {{agent.value.metadata.commands[cape].timeout}}</li>
                         </ul>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
             </div>
             <div class="col-sm-4">
                 <ul class="list-group">
-                    <li class="list-group-item">Display name: {{agent.metadata.parameters[resource].display_name}}</li>
-                    <li class="list-group-item">Get timeout: {{agent.metadata.parameters[resource].get_timeout}}</li>
-                    <li class="list-group-item">Set timeout: {{agent.metadata.parameters[resource].set_timeout}}</li>
-                    <li class="list-group-item">Direct access: {{agent.metadata.parameters[resource].direct_access}}</li>
-                    <li class="list-group-item">Startup: {{agent.metadata.parameters[resource].startup}}</li>
-                    <li class="list-group-item">Visibility: {{agent.metadata.parameters[resource].visibility}}</li>
-                    <li class="list-group-item">Default Value: {{agent.metadata.parameters[resource].value.default}}</li>
-                    <li class="list-group-item">Units: {{agent.metadata.parameters[resource].value.units}}</li>
-                    <li class="list-group-item">Type: {{agent.metadata.parameters[resource].value.type}}</li>
+                    <li class="list-group-item">Display name: {{agent.value.metadata.parameters[resource].display_name}}</li>
+                    <li class="list-group-item">Get timeout: {{agent.value.metadata.parameters[resource].get_timeout}}</li>
+                    <li class="list-group-item">Set timeout: {{agent.value.metadata.parameters[resource].set_timeout}}</li>
+                    <li class="list-group-item">Direct access: {{agent.value.metadata.parameters[resource].direct_access}}</li>
+                    <li class="list-group-item">Startup: {{agent.value.metadata.parameters[resource].startup}}</li>
+                    <li class="list-group-item">Visibility: {{agent.value.metadata.parameters[resource].visibility}}</li>
+                    <li class="list-group-item">Default Value: {{agent.value.metadata.parameters[resource].value.default}}</li>
+                    <li class="list-group-item">Units: {{agent.value.metadata.parameters[resource].value.units}}</li>
+                    <li class="list-group-item">Type: {{agent.value.metadata.parameters[resource].value.type}}</li>
                 </ul>
             </div>
         </div>
