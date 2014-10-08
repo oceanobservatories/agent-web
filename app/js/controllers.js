@@ -74,16 +74,16 @@ agentControllers.controller('AgentDetailCtrl', ['$scope', '$http', '$routeParams
         // Below is the code that keeps the instrument state updated
         // This code is an infinite loop, but blocks on the server end unless
         // there is a state change...
-        var getAgent = function (agentid, ts) {
-            $http({method: 'GET', url: baseUrl, params: {timestamp: ts}}).
+        var getAgent = function (agentid, blocking) {
+            $http({method: 'GET', url: baseUrl, params: {blocking: blocking}}).
                 success(function (data, status, headers, config) {
                     $scope.agent = data;
-                    getAgent(agentid, $scope.agent.time);
+                    getAgent(agentid, true);
                 }).
                 error(function (data, status, headers, config) {
                     // TODO - notify user
                 });
         };
         // fire off our endless polling...
-        getAgent($routeParams.agentId, 0.0);
+        getAgent($routeParams.agentId, false);
     }]);
