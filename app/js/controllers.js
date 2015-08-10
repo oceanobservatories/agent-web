@@ -28,8 +28,8 @@ agentControllers.controller('AgentListCtrl', ['$scope', '$http', 'Agent',
         }
     }]);
 
-agentControllers.controller('AgentDetailCtrl', ['$scope', '$http', '$routeParams', 'Agent',
-    function($scope, $http, $routeParams, Agent) {
+agentControllers.controller('AgentDetailCtrl', ['$scope', '$timeout', '$http', '$routeParams', 'Agent',
+    function($scope, $timeout, $http, $routeParams, Agent) {
         var baseUrl = "/instrument/api/" + $routeParams.agentId;
 
         var execNoArgs = function (f) {
@@ -72,13 +72,12 @@ agentControllers.controller('AgentDetailCtrl', ['$scope', '$http', '$routeParams
         };
 
         // Below is the code that keeps the instrument state updated
-        // This code is an infinite loop, but blocks on the server end unless
-        // there is a state change...
+        // This code is an infinite loop, refreshing every 5s
         var getAgent = function (agentid, blocking) {
-            $http({method: 'GET', url: baseUrl, params: {blocking: blocking}}).
+            $http({method: 'GET', url: baseUrl}).
                 success(function (data, status, headers, config) {
                     $scope.agent = data;
-                    getAgent(agentid, true);
+                    $timeout(getAgent, 5000, true, agentid);
                 }).
                 error(function (data, status, headers, config) {
                     // TODO - notify user
